@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "nome": "X-frango",
+        "descricao": "Pão, frango em cubos, mussarela, batata palha",
+        "preco": 18.00,
+        "imagem": "assets/images/xfrango.jpg"
+
+    },
+
+    {
+        "id": 2,
+        "nome": "X-bacon",
+        "descricao": "Pão, hamburguer 120g, mussarela, presunto, bacon",
+        "preco": 25.00,
+        "imagem": "assets/images/xbacon.jpg"
+    },
+
+    {
+        "id": 3,
+        "nome": "Misto quente",
+        "descricao": "Pão, presunto, mussarela, batata palha",
+        "preco": 12.00,
+        "imagem": "assets/images/misto.jpg"
+    },
+
+    {
+        "id": 4,
+        "nome": "Coca Cola",
+        "descricao": "Lata 350 ml",
+        "preco": 6.00,
+        "imagem": "assets/images/coca.jpg"
+    }
+]
