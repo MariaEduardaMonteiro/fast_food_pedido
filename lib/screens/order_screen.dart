@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fast_food_pedido/models/product.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class OrderScreen extends StatefulWidget {
   final Product product;
@@ -19,11 +19,21 @@ class _OrderScreenState extends State<OrderScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController obsController = TextEditingController();
 
+  final phoneMask = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {
+      "#": RegExp(r'[0-9]'),
+    },
+  );
+
   bool _isButtonEnabled = false;
 
   void _checkFormValidity() {
     final isNameValid = nameController.text.trim().isNotEmpty;
-    final isPhoneValid = phoneController.text.trim().length >= 10;
+
+    final phone = phoneMask.getUnmaskedText();
+
+    final isPhoneValid = phone.length == 10 || phone.length == 11;
 
     setState(() {
       _isButtonEnabled = isNameValid && isPhoneValid;
@@ -53,7 +63,6 @@ class _OrderScreenState extends State<OrderScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-
               /// Card do Produto
               Card(
                 elevation: 4,
@@ -64,7 +73,6 @@ class _OrderScreenState extends State<OrderScreen> {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
-
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
@@ -79,11 +87,11 @@ class _OrderScreenState extends State<OrderScreen> {
 
                       Text(
                         product.nome,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
-                        textAlign: TextAlign.center,
                       ),
 
                       const SizedBox(height: 8),
@@ -132,7 +140,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 controller: phoneController,
                 keyboardType: TextInputType.phone,
                 inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
+                  phoneMask,
                 ],
                 decoration: const InputDecoration(
                   labelText: "Telefone",
@@ -169,9 +177,9 @@ class _OrderScreenState extends State<OrderScreen> {
                             "/summary",
                             arguments: {
                               "product": product,
-                              "name": nameController.text,
+                              "name": nameController.text.trim(),
                               "phone": phoneController.text,
-                              "obs": obsController.text,
+                              "obs": obsController.text.trim(),
                             },
                           );
                         }
