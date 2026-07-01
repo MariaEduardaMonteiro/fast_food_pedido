@@ -19,13 +19,11 @@ class _OrderScreenState extends State<OrderScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController obsController = TextEditingController();
 
-  //Variável para controlar se o botão deve estar ativo
   bool _isButtonEnabled = false;
 
-  //Função que verifica se os campos obrigatórios estão preenchidos
   void _checkFormValidity() {
     final isNameValid = nameController.text.trim().isNotEmpty;
-    final isPhoneValid = phoneController.text.trim().length >= 10; 
+    final isPhoneValid = phoneController.text.trim().length >= 10;
 
     setState(() {
       _isButtonEnabled = isNameValid && isPhoneValid;
@@ -47,101 +45,151 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Pedido"),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //Produto selecionado
-            Text(
-              product.nome,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
 
-            const SizedBox(height: 8),
+              /// Card do Produto
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
 
-            Text(
-              "R\$ ${product.preco.toStringAsFixed(2)}",
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.green,
-              ),
-            ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          product.imagem,
+                          height: 180,
+                          width: 180,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
 
-            const SizedBox(height: 20),
+                      const SizedBox(height: 16),
 
-            // Nome
-            TextField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                labelText: "Nome",
-                border: OutlineInputBorder(),
-              ),
-              //Dispara a verificação a cada letra digitada
-              onChanged: (_) => _checkFormValidity(),
-            ),
+                      Text(
+                        product.nome,
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
 
-            const SizedBox(height: 12),
+                      const SizedBox(height: 8),
 
-            // Telefone
-            TextField(
-              controller: phoneController,
-              decoration: const InputDecoration(
-                labelText: "Telefone",
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: TextInputType.phone,
-              //Garante que apenas números sejam digitados
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              onChanged: (_) => _checkFormValidity(),
-            ),
+                      Text(
+                        product.descricao,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 15,
+                        ),
+                      ),
 
-            const SizedBox(height: 12),
+                      const SizedBox(height: 12),
 
-            // Observação
-            TextField(
-              controller: obsController,
-              decoration: const InputDecoration(
-                labelText: "Observação",
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 3,
-            ),
-
-            const Spacer(),
-
-            //Botão para finalizar compra
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                //Se '_isButtonEnabled' for falso, passamos null no onPressed
-                onPressed: _isButtonEnabled
-                    ? () {
-                        Navigator.pushNamed(
-                          context,
-                          "/summary",
-                          arguments: {
-                            "product": product,
-                            "name": nameController.text,
-                            "phone": phoneController.text,
-                            "obs": obsController.text,
-                          },
-                        );
-                      }
-                    : null, 
-                child: const Text(
-                  "Finalizar Pedido",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                      Text(
+                        "R\$ ${product.preco.toStringAsFixed(2)}",
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            )
-          ],
+
+              const SizedBox(height: 24),
+
+              /// Campo Nome
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: "Nome",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.person),
+                ),
+                onChanged: (_) => _checkFormValidity(),
+              ),
+
+              const SizedBox(height: 16),
+
+              /// Campo Telefone
+              TextField(
+                controller: phoneController,
+                keyboardType: TextInputType.phone,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  labelText: "Telefone",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.phone),
+                ),
+                onChanged: (_) => _checkFormValidity(),
+              ),
+
+              const SizedBox(height: 16),
+
+              /// Campo Observação
+              TextField(
+                controller: obsController,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  labelText: "Observação",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.edit_note),
+                  alignLabelWithHint: true,
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton.icon(
+                  onPressed: _isButtonEnabled
+                      ? () {
+                          Navigator.pushNamed(
+                            context,
+                            "/summary",
+                            arguments: {
+                              "product": product,
+                              "name": nameController.text,
+                              "phone": phoneController.text,
+                              "obs": obsController.text,
+                            },
+                          );
+                        }
+                      : null,
+                  icon: const Icon(Icons.shopping_cart_checkout),
+                  label: const Text(
+                    "Finalizar Pedido",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );

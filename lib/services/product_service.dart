@@ -16,12 +16,8 @@ class ProductService {
       // Converte e retorna a lista
       return data.map((item) => Product.fromJson(item)).toList();
       
-    } catch (error, stackTrace) {
-      //Se algo der errado, avisa no console com detalhes do erro
-      print('Erro ao carregar ou processar o JSON de produtos: $error');
-      print('Stack trace: $stackTrace');
-   
-      return [];
+    } catch (e) {
+  throw Exception("Erro ao carregar os produtos.");
     }
   }
 }

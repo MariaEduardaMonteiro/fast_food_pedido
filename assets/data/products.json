@@ -1,34 +1,72 @@
 [
-    {
-        "id": 1,
-        "nome": "X-frango",
-        "descricao": "Pão, frango em cubos, mussarela, batata palha",
-        "preco": 18.00,
-        "imagem": "assets/images/xfrango.jpg"
-
-    },
-
-    {
-        "id": 2,
-        "nome": "X-bacon",
-        "descricao": "Pão, hamburguer 120g, mussarela, presunto, bacon",
-        "preco": 25.00,
-        "imagem": "assets/images/xbacon.jpg"
-    },
-
-    {
-        "id": 3,
-        "nome": "Misto quente",
-        "descricao": "Pão, presunto, mussarela, batata palha",
-        "preco": 12.00,
-        "imagem": "assets/images/misto.jpg"
-    },
-
-    {
-        "id": 4,
-        "nome": "Coca Cola",
-        "descricao": "Lata 350 ml",
-        "preco": 6.00,
-        "imagem": "assets/images/coca.jpg"
-    }
+  {
+    "id": 1,
+    "nome": "X-frango",
+    "descricao": "Pão, frango em cubos, mussarela, batata palha",
+    "preco": 18.00,
+    "imagem": "assets/images/xfrango.jpg"
+  },
+  {
+    "id": 2,
+    "nome": "X-bacon",
+    "descricao": "Pão, hambúrguer 120g, mussarela, presunto, bacon",
+    "preco": 25.00,
+    "imagem": "assets/images/xbacon.jpg"
+  },
+  {
+    "id": 3,
+    "nome": "Misto Quente",
+    "descricao": "Pão, presunto, mussarela e batata palha",
+    "preco": 12.00,
+    "imagem": "assets/images/misto.jpg"
+  },
+  {
+    "id": 4,
+    "nome": "Coca-Cola",
+    "descricao": "Lata 350 ml",
+    "preco": 6.00,
+    "imagem": "assets/images/coca.jpg"
+  },
+  {
+    "id": 5,
+    "nome": "X-Salada",
+    "descricao": "Pão, hambúrguer 120g, alface, tomate, mussarela e maionese",
+    "preco": 22.00,
+    "imagem": "assets/images/xsalada.jpg"
+  },
+  {
+    "id": 6,
+    "nome": "X-Tudo",
+    "descricao": "Pão, hambúrguer 180g, bacon, presunto, ovo, mussarela, alface e tomate",
+    "preco": 32.00,
+    "imagem": "assets/images/xtudo.jpg"
+  },
+  {
+    "id": 7,
+    "nome": "Batata Frita",
+    "descricao": "Porção de batata frita crocante - 300g",
+    "preco": 16.00,
+    "imagem": "assets/images/batata.jpg"
+  },
+  {
+    "id": 8,
+    "nome": "Suco Natural de Laranja",
+    "descricao": "Copo de 500 ml",
+    "preco": 9.00,
+    "imagem": "assets/images/suco.png"
+  },
+  {
+    "id": 9,
+    "nome": "Milk Shake de Chocolate",
+    "descricao": "Milk shake cremoso de chocolate - 400 ml",
+    "preco": 15.00,
+    "imagem": "assets/images/milkshake.jpeg"
+  },
+  {
+    "id": 10,
+    "nome": "Pudim de Leite",
+    "descricao": "Fatia de pudim de leite condensado",
+    "preco": 10.00,
+    "imagem": "assets/images/pudim.jpg"
+  }
 ]

@@ -17,7 +17,6 @@ Este projeto foi construído como parte de um teste técnico de processo seletiv
 - **Flutter & Dart**
 - **Navegação Declarativa:** Centralização e padronização através de Rotas Nomeadas (`onGenerateRoute`).
 - **Gerenciamento de Estado:** Ciclo de vida controlado com `StatefulWidget`, liberação de recursos (`dispose`) de controladores para evitar *memory leaks*.
-- **Expressões Regulares (RegExp):** Sanitização de dados de entrada em tempo real.
 
 ---
 
